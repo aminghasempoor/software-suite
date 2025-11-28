@@ -1,4 +1,4 @@
-import { Calendar, Inbox, WalletCards, Settings} from "lucide-react";
+import { Calendar, Inbox, WalletCards, Settings } from "lucide-react";
 
 export function getDashboardSidebarItems(t: (key: string) => string) {
     return [

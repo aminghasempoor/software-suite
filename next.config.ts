@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
             {
                 protocol: "https",
                 hostname: "cdn.141.ir",
-            }
+            },
         ],
     },
     // Webpack config for production

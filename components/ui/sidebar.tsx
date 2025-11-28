@@ -43,14 +43,14 @@ function useSidebar() {
 }
 
 function SidebarProvider({
-                             defaultOpen = true,
-                             open: openProp,
-                             onOpenChange: setOpenProp,
-                             className,
-                             style,
-                             children,
-                             ...props
-                         }: React.ComponentProps<"div"> & {
+    defaultOpen = true,
+    open: openProp,
+    onOpenChange: setOpenProp,
+    className,
+    style,
+    children,
+    ...props
+}: React.ComponentProps<"div"> & {
     defaultOpen?: boolean;
     open?: boolean;
     onOpenChange?: (open: boolean) => void;
@@ -138,13 +138,13 @@ function SidebarProvider({
 }
 
 function Sidebar({
-                     side = "left",
-                     variant = "sidebar",
-                     collapsible = "offcanvas",
-                     className,
-                     children,
-                     ...props
-                 }: React.ComponentProps<"div"> & {
+    side = "left",
+    variant = "sidebar",
+    collapsible = "offcanvas",
+    className,
+    children,
+    ...props
+}: React.ComponentProps<"div"> & {
     side?: "left" | "right";
     variant?: "sidebar" | "floating" | "inset";
     collapsible?: "offcanvas" | "icon" | "none";
@@ -367,10 +367,10 @@ function SidebarGroup({ className, ...props }: React.ComponentProps<"div">) {
 }
 
 function SidebarGroupLabel({
-                               className,
-                               asChild = false,
-                               ...props
-                           }: React.ComponentProps<"div"> & { asChild?: boolean }) {
+    className,
+    asChild = false,
+    ...props
+}: React.ComponentProps<"div"> & { asChild?: boolean }) {
     const Comp = asChild ? Slot : "div";
 
     return (
@@ -388,10 +388,10 @@ function SidebarGroupLabel({
 }
 
 function SidebarGroupAction({
-                                className,
-                                asChild = false,
-                                ...props
-                            }: React.ComponentProps<"button"> & { asChild?: boolean }) {
+    className,
+    asChild = false,
+    ...props
+}: React.ComponentProps<"button"> & { asChild?: boolean }) {
     const Comp = asChild ? Slot : "button";
 
     return (
@@ -466,14 +466,14 @@ const sidebarMenuButtonVariants = cva(
 );
 
 function SidebarMenuButton({
-                               asChild = false,
-                               isActive = false,
-                               variant = "default",
-                               size = "default",
-                               tooltip,
-                               className,
-                               ...props
-                           }: React.ComponentProps<"button"> & {
+    asChild = false,
+    isActive = false,
+    variant = "default",
+    size = "default",
+    tooltip,
+    className,
+    ...props
+}: React.ComponentProps<"button"> & {
     asChild?: boolean;
     isActive?: boolean;
     tooltip?: string | React.ComponentProps<typeof TooltipContent>;
@@ -511,11 +511,11 @@ function SidebarMenuButton({
 }
 
 function SidebarMenuAction({
-                               className,
-                               asChild = false,
-                               showOnHover = false,
-                               ...props
-                           }: React.ComponentProps<"button"> & {
+    className,
+    asChild = false,
+    showOnHover = false,
+    ...props
+}: React.ComponentProps<"button"> & {
     asChild?: boolean;
     showOnHover?: boolean;
 }) {
@@ -534,7 +534,7 @@ function SidebarMenuAction({
                 "peer-data-[size=lg]/menu-button:top-2.5",
                 "group-data-[collapsible=icon]:hidden",
                 showOnHover &&
-                "peer-data-[active=true]/menu-button:text-sidebar-accent-foreground group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 data-[state=open]:opacity-100 md:opacity-0",
+                    "peer-data-[active=true]/menu-button:text-sidebar-accent-foreground group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 data-[state=open]:opacity-100 md:opacity-0",
                 className
             )}
             {...props}
@@ -562,10 +562,10 @@ function SidebarMenuBadge({ className, ...props }: React.ComponentProps<"div">) 
 }
 
 function SidebarMenuSkeleton({
-                                 className,
-                                 showIcon = false,
-                                 ...props
-                             }: React.ComponentProps<"div"> & {
+    className,
+    showIcon = false,
+    ...props
+}: React.ComponentProps<"div"> & {
     showIcon?: boolean;
 }) {
     // Random width between 50 to 90%.
@@ -621,12 +621,12 @@ function SidebarMenuSubItem({ className, ...props }: React.ComponentProps<"li">)
 }
 
 function SidebarMenuSubButton({
-                                  asChild = false,
-                                  size = "md",
-                                  isActive = false,
-                                  className,
-                                  ...props
-                              }: React.ComponentProps<"a"> & {
+    asChild = false,
+    size = "md",
+    isActive = false,
+    className,
+    ...props
+}: React.ComponentProps<"a"> & {
     asChild?: boolean;
     size?: "sm" | "md";
     isActive?: boolean;
