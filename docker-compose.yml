@@ -1,0 +1,12 @@
+services:
+    software-front:
+        container_name: software-front
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: software-front:v1
+        ports:
+            - "3000:3000"
+        env_file:
+            - .env
+        restart: unless-stopped
