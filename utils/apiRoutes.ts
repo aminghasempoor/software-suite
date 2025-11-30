@@ -1,7 +1,8 @@
 export const api = process.env.NEXT_PUBLIC_API_URL;
 const basicURL = api + "/api";
-export const GET_USER_ROUTE = basicURL + "/profile/info";
-export const GET_LOGIN_ROUTE = basicURL + "/token";
+export const GET_USER_ROUTE = basicURL + "/users/me/";
+export const GET_REFRESH_TOKEN = basicURL + "/token/refresh/";
+export const GET_LOGIN_ROUTE = basicURL + "/token/";
 export const GET_LOGOUT_ROUTE = basicURL + "/auth/logout";
 export const GET_DISCOUNT = basicURL + "/discounts";
 export const GET_DISCOUNT_DETAIL = basicURL + "/discounts";
