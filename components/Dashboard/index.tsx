@@ -7,10 +7,7 @@ import { services } from "@/utils/data";
 
 export function DashboardComponent() {
     return (
-        <div
-            dir="rtl"
-            className="relative min-h-screen bg-gradient-to-b from-background to-muted overflow-hidden"
-        >
+        <div dir="rtl" className="relative min-h-screen bg-gradient-to-b from-background to-muted overflow-hidden">
             {/* Decorative Background Lights */}
             <div className="pointer-events-none fixed inset-0 overflow-hidden">
                 <div className="absolute top-40 right-20 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
@@ -25,9 +22,7 @@ export function DashboardComponent() {
                     transition={{ duration: 0.5 }}
                     className="mb-16"
                 >
-                    <h1 className="text-3xl font-semibold text-foreground mb-2">
-                        داشبورد سرویس‌ها
-                    </h1>
+                    <h1 className="text-3xl font-semibold text-foreground mb-2">داشبورد سرویس‌ها</h1>
                     <p className="text-muted-foreground mb-8">
                         به پلتفرم مدیریت نرم‌افزار خوش آمدید. لطفاً سرویس مورد نظر خود را انتخاب کنید.
                     </p>
@@ -44,7 +39,7 @@ export function DashboardComponent() {
                             key={index}
                             variants={{
                                 hidden: { opacity: 0, y: 20 },
-                                visible: { opacity: 1, y: 0 }
+                                visible: { opacity: 1, y: 0 },
                             }}
                         >
                             <ServiceCard

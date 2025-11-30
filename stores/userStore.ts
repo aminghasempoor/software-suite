@@ -25,7 +25,6 @@ interface User {
     user_language?: string;
 }
 
-
 interface UserStoreState {
     isAuth: boolean;
     errorState: boolean;
@@ -79,7 +78,6 @@ const useUserStore = create<UserStoreState>((set, get) => ({
         last_activity: null,
     },
 
-
     clearUser: () =>
         set({
             user: {
@@ -102,7 +100,6 @@ const useUserStore = create<UserStoreState>((set, get) => ({
                 last_activity: null,
             },
         }),
-
 
     changeUser: (user: User) => set({ user }),
 

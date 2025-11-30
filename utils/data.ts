@@ -1,11 +1,16 @@
-import { Calendar, Inbox, WalletCards, Settings,
+import {
+    Calendar,
+    Inbox,
+    WalletCards,
+    Settings,
     GitBranch,
     CheckSquare,
     FileText,
     Activity,
     Database,
     GitPullRequest,
-    Layers,} from "lucide-react";
+    Layers,
+} from "lucide-react";
 
 export function getDashboardSidebarItems(t: (key: string) => string) {
     return [
@@ -31,7 +36,6 @@ export function getDashboardSidebarItems(t: (key: string) => string) {
         },
     ];
 }
-
 
 export const services = [
     {

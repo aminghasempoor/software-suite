@@ -19,19 +19,11 @@ export function Header() {
 
                 {/* User Info and Actions - Left Side */}
                 <div className="flex items-center gap-4">
-                    <Button
-                        variant="ghost"
-                        size="icon"
-                        className="text-slate-400 hover:text-white hover:bg-slate-800"
-                    >
+                    <Button variant="ghost" size="icon" className="text-slate-400 hover:text-white hover:bg-slate-800">
                         <Bell className="h-5 w-5" />
                     </Button>
 
-                    <Button
-                        variant="ghost"
-                        size="icon"
-                        className="text-slate-400 hover:text-white hover:bg-slate-800"
-                    >
+                    <Button variant="ghost" size="icon" className="text-slate-400 hover:text-white hover:bg-slate-800">
                         <Settings className="h-5 w-5" />
                     </Button>
 
