@@ -4,7 +4,7 @@
     "title": "سلام دنیا"
   },
   "Global": {
-    "appName": "منولیتا",
+    "appName": "Software-Suit",
     "back": "بازگشت",
     "motto": "آسان تر از همیشه",
     "loading": "لطفا منتظر بمانید...",
@@ -63,14 +63,14 @@
     "profile": "پروفایل",
     "items": "آیتم ها",
     "user-management": "مدیریت کاربران",
-    "logo": "منولیتا",
+    "logo": "Software-Suit",
     "customer_review": "نظرات مشتریان",
     "unit": "هزار تومان",
     "category": "دسته بندی ها",
     "log_out": "خروج",
     "settings": "تنظیمات",
     "application": "برنامه",
-    "global_title": "منولیتا",
+    "global_title": "Software-Suit",
     "footer": "پاورقی"
   },
   "Notifications": {

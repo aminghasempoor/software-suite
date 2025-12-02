@@ -4,7 +4,7 @@
     "title": "Hello world!"
   },
   "Global": {
-    "appName": "Bakery",
+    "appName": "Software-Suit",
     "back": "back",
     "motto": "great out",
     "loading": "loading...",
@@ -22,7 +22,7 @@
   "Sidebar": {
     "sidebar": "sidebar",
     "title": "dashboard",
-    "logo": "Menulita",
+    "logo": "Software-Suit",
     "user-management": "User Management",
     "customer_review": "Customers Review",
     "home": "Home",
@@ -32,7 +32,7 @@
     "log_out": "Log Out",
     "settings": "Settings",
     "application": "Application",
-    "global_title": "menulita",
+    "global_title": "Software-Suit",
     "footer": "Footer"
   },
   "Notifications": {

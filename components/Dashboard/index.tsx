@@ -7,7 +7,7 @@ import { services } from "@/utils/data";
 
 export function DashboardComponent() {
     return (
-        <div dir="rtl" className="relative min-h-screen bg-gradient-to-b from-background to-muted overflow-hidden">
+        <div dir="rtl" className="relative min-h-screen  overflow-hidden">
             {/* Decorative Background Lights */}
             <div className="pointer-events-none fixed inset-0 overflow-hidden">
                 <div className="absolute top-40 right-20 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
