@@ -72,7 +72,7 @@ export default function UserSettings() {
             <div className="mb-6 space-y-3 text-center">
                 <div className={"flex gap-x-5 items-center justify-center"}>
                     <span className="font-medium">{t("user_name")} : </span>
-                    <p className="mt-1">{user.username || "-"}</p>
+                    <p className="mt-1">{user.first_name || "-"}</p>
                 </div>
                 <div className={"flex gap-x-5 items-center justify-center"}>
                     <span className="font-medium">{t("email")} : </span>

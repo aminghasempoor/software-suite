@@ -49,7 +49,7 @@ const defaultOptions: RequestOptions = {
 
 const useRequest = (initOptions: RequestOptions) => {
     const t = useTranslations();
-    const { token, clearToken } = useUserStore();
+    const { accessToken, clearToken } = useUserStore();
     const { pushToastList, dismissToastList } = ToastStore();
 
     let _options = { ...defaultOptions, ...initOptions };
@@ -66,7 +66,7 @@ const useRequest = (initOptions: RequestOptions) => {
                     headers: {
                         ...(_options.requestOptions?.headers || {}),
                         ...(isFormData ? {} : { "Content-Type": "application/json" }),
-                        authorization: `Bearer ${token}`,
+                        authorization: `Bearer ${accessToken}`,
                     },
                 },
             };

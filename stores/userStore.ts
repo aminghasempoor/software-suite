@@ -1,26 +1,28 @@
 "use client";
-import { GET_USER_ROUTE } from "@/utils/apiRoutes";
-import axios from "axios";
-import Cookies from "js-cookie";
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import axios from "axios";
+import { GET_REFRESH_TOKEN, GET_USER_ROUTE } from "@/utils/apiRoutes";
 
 interface User {
     id: number;
-    first_name: string | null;
-    username: string | null;
-    last_name: string | null;
-    phone_number: string;
+    username: string;
     email: string | null;
-    gender: "male" | "female" | null;
-    job_field: string | null;
-    province_id: number | null;
-    province_fa: string | null;
-    city_id: number | null;
-    city_fa: string | null;
-    national_code: string | null;
-    vehicle_type: string | null;
-    is_valid: boolean;
+    first_name: string;
+    last_name: string;
+    full_name: string;
+    role: "admin" | "user" | "manager";
+    phone_number: string | null;
+    bio: string | null;
+    avatar: string | null;
+    is_active: boolean;
+    is_staff: boolean;
+    is_email_verified: boolean;
+    date_joined: string;
+    updated_at: string;
+    last_login: string | null;
+    last_activity: string | null;
+
+    user_language?: string;
 }
 
 interface UserStoreState {
@@ -28,130 +30,185 @@ interface UserStoreState {
     errorState: boolean;
     userChangedLanguage: boolean;
     initAuthState: boolean;
-    token: string | null;
+    accessToken: string | null;
+    refreshToken: string | null;
     user: User;
+
     clearUser: () => void;
     changeUser: (user: User) => void;
     changeUserLanguage: (language: string) => void;
     changeAuthState: (isAuth: boolean) => void;
     changeInitAuth: (initAuthState: boolean) => void;
     changeLanguageState: (userChangedLanguage: boolean) => void;
+
     clearToken: () => void;
+    setToken: (accessToken: string, refreshToken: string) => void;
+    refreshAccessToken: () => Promise<void>;
+
     logout: () => Promise<void>;
-    setToken: (token: string) => void;
     getUser: () => Promise<void>;
     initialize: () => Promise<void>;
 }
 
-const defaultUser: User = {
-    id: 0,
-    first_name: null,
-    username: null,
-    last_name: null,
-    phone_number: "",
-    email: "",
-    gender: null,
-    job_field: null,
-    province_id: null,
-    province_fa: null,
-    city_id: null,
-    city_fa: null,
-    national_code: null,
-    vehicle_type: null,
-    is_valid: false,
-};
+const useUserStore = create<UserStoreState>((set, get) => ({
+    accessToken: typeof window !== "undefined" ? localStorage.getItem("_access_token") : null,
+    refreshToken: typeof window !== "undefined" ? localStorage.getItem("_refresh_token") : null,
+    isAuth: false,
+    userChangedLanguage: false,
+    initAuthState: false,
+    errorState: false,
 
-const useUserStore = create<UserStoreState>()(
-    persist(
-        (set, get) => ({
-            isAuth: false,
-            userChangedLanguage: false,
-            initAuthState: false,
-            errorState: false,
-            token: null,
-            user: defaultUser,
+    user: {
+        id: 0,
+        username: "",
+        email: null,
+        first_name: "",
+        last_name: "",
+        full_name: "",
+        role: "user",
+        phone_number: null,
+        bio: null,
+        avatar: null,
+        is_active: false,
+        is_staff: false,
+        is_email_verified: false,
+        date_joined: "",
+        updated_at: "",
+        last_login: null,
+        last_activity: null,
+    },
 
-            clearUser: () => set({ user: defaultUser }),
-
-            changeUser: (user: User) => set({ user, isAuth: true }),
-
-            changeUserLanguage: (language: string) =>
-                set((state) => ({
-                    user: { ...state.user, user_language: language },
-                })),
-
-            changeAuthState: (isAuth: boolean) => set({ isAuth }),
-
-            changeInitAuth: (initAuthState: boolean) => set({ initAuthState }),
-
-            changeLanguageState: (userChangedLanguage: boolean) => set({ userChangedLanguage }),
-
-            clearToken: () => {
-                set({ token: null, isAuth: false });
-                set({ initAuthState: true });
-                Cookies.remove("_token");
-            },
-
-            setToken: (token: string) => {
-                set({ token, initAuthState: true });
-                Cookies.set("_token", token, { sameSite: "strict" });
-            },
-
-            logout: async () => {
-                get().clearUser();
-                get().changeAuthState(false);
-                get().changeInitAuth(true);
-                get().clearToken();
-                set({ isAuth: false });
-            },
-
-            getUser: async () => {
-                const token = get().token;
-                if (!token) return;
-
-                try {
-                    const { data } = await axios.get(GET_USER_ROUTE, {
-                        headers: { authorization: `Bearer ${token}` },
-                    });
-                    set({
-                        user: data.data,
-                        isAuth: true,
-                        initAuthState: true,
-                        errorState: false,
-                    });
-                } catch (error: unknown) {
-                    if (axios.isAxiosError(error) && error.response?.status === 401) {
-                        get().clearToken();
-                    }
-                    set({
-                        isAuth: false,
-                        initAuthState: true,
-                        errorState: true,
-                    });
-                }
-            },
-
-            initialize: async () => {
-                const token = get().token;
-                if (!token) {
-                    get().clearUser();
-                    get().changeAuthState(false);
-                    get().changeInitAuth(true);
-                    get().changeLanguageState(false);
-                    return;
-                }
-                await get().getUser();
+    clearUser: () =>
+        set({
+            user: {
+                id: 0,
+                username: "",
+                email: null,
+                first_name: "",
+                last_name: "",
+                full_name: "",
+                role: "user",
+                phone_number: null,
+                bio: null,
+                avatar: null,
+                is_active: false,
+                is_staff: false,
+                is_email_verified: false,
+                date_joined: "",
+                updated_at: "",
+                last_login: null,
+                last_activity: null,
             },
         }),
-        {
-            name: "user-storage",
-            partialize: (state) => ({
-                token: state.token,
-                user: state.user,
-                isAuth: state.isAuth,
-            }),
+
+    changeUser: (user: User) => set({ user }),
+
+    changeUserLanguage: (language: string) =>
+        set((state) => ({
+            user: { ...state.user, user_language: language },
+        })),
+
+    changeAuthState: (isAuth: boolean) => set({ isAuth }),
+
+    changeInitAuth: (initAuthState: boolean) => set({ initAuthState }),
+
+    changeLanguageState: (userChangedLanguage: boolean) => set({ userChangedLanguage }),
+
+    clearToken: () => {
+        if (typeof window !== "undefined") {
+            localStorage.removeItem("_access_token");
+            localStorage.removeItem("_refresh_token");
         }
-    )
-);
+        set({ accessToken: null, refreshToken: null });
+        set({ initAuthState: true });
+    },
+
+    setToken: (accessToken: string, refreshToken: string) => {
+        if (typeof window !== "undefined") {
+            localStorage.setItem("_access_token", accessToken);
+            localStorage.setItem("_refresh_token", refreshToken);
+        }
+        set({ accessToken, refreshToken });
+        set({ initAuthState: true });
+    },
+
+    refreshAccessToken: async () => {
+        const refreshToken = get().refreshToken;
+        if (!refreshToken) {
+            await get().logout();
+            return;
+        }
+
+        try {
+            const { data } = await axios.post(GET_REFRESH_TOKEN, {
+                refresh: refreshToken,
+            });
+
+            get().setToken(data.access, refreshToken);
+        } catch (error) {
+            console.error("Refresh token failed", error);
+            await get().logout();
+        }
+    },
+
+    logout: async () => {
+        get().clearUser();
+        get().changeAuthState(false);
+        get().changeInitAuth(true);
+        get().clearToken();
+    },
+
+    getUser: async () => {
+        const token = get().accessToken;
+        if (!token) {
+            set({
+                isAuth: false,
+                initAuthState: true,
+                errorState: false,
+            });
+            return;
+        }
+
+        try {
+            const { data } = await axios.get(GET_USER_ROUTE, {
+                headers: { Authorization: `Bearer ${token}` },
+            });
+            set({
+                user: data.data,
+                isAuth: true,
+                initAuthState: true,
+                errorState: false,
+            });
+        } catch (error: any) {
+            if (axios.isAxiosError(error) && error.response?.status === 401) {
+                try {
+                    await get().refreshAccessToken();
+                    return await get().getUser(); // دوباره تلاش کن
+                } catch {
+                    // داخل refreshAccessToken هندل میشه
+                }
+            }
+
+            set({
+                isAuth: false,
+                initAuthState: true,
+                errorState: true,
+            });
+        }
+    },
+
+    initialize: async () => {
+        const token = get().accessToken;
+        if (!token) {
+            get().clearUser();
+            get().changeAuthState(false);
+            get().changeInitAuth(true);
+            get().changeLanguageState(false);
+            return;
+        }
+
+        await get().getUser();
+    },
+}));
 
 export default useUserStore;

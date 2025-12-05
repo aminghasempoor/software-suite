@@ -33,7 +33,7 @@ export default function Login() {
                     notification: { show: true },
                 },
             })) as { data: { access: string; refresh: string } };
-            setToken(response.data.access);
+            setToken(response.data.access, response.data.refresh);
             await getUser();
         } catch (error) {
             console.log(error);
