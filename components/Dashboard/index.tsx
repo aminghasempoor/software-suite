@@ -44,6 +44,7 @@ export function DashboardComponent() {
                         >
                             <ServiceCard
                                 title={service.title}
+                                href={service.href as string}
                                 description={service.description}
                                 status={service.status}
                                 icon={service.icon}

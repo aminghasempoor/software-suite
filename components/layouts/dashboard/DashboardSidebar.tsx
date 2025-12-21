@@ -18,20 +18,23 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import SidebarFooterComponent from "./SidebarFooter";
 import { useTranslations } from "next-intl";
 import { getDashboardSidebarItems } from "@/utils/data";
+import useUserStore from "@/stores/userStore";
 
 export function DashboardSidebar() {
     const t = useTranslations("Sidebar");
+    const { user } = useUserStore();
     const items = getDashboardSidebarItems(t);
     const pathname = usePathname();
     const segments = pathname.split("/").filter(Boolean);
     const { toggleSidebar, isMobile } = useSidebar();
+
     return (
         <Sidebar collapsible="icon" variant="inset" side={`${segments[0] === "en" ? "left" : "right"}`}>
             <SidebarContent>
                 <SidebarGroup>
                     <SidebarGroupLabel className={"text-2xl mb-2 capitalize mt-2"}>
                         {/*<Image src={IconLogo} alt={"logo"} width={20} height={20} className="pointer-events-none" />*/}
-                        <div className={"mx-2"}>{t("global_title")}</div>
+                        <div className={"mx-2"}>{user.username}</div>
                     </SidebarGroupLabel>
                     <SidebarGroupContent>
                         <SidebarMenu>
