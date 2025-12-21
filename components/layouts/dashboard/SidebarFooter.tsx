@@ -3,8 +3,6 @@ import { SidebarMenuButton } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 import { Power } from "lucide-react";
-import useRequest from "@/hooks/useRequest";
-import { GET_LOGOUT_ROUTE } from "@/utils/apiRoutes";
 import useUserStore from "@/stores/userStore";
 import { useRouter } from "next/navigation";
 import { ModeToggle } from "@/core/ToggeTheme";
@@ -13,15 +11,9 @@ const SidebarFooterComponent = () => {
     const t = useTranslations("Sidebar");
     const { logout } = useUserStore();
     const router = useRouter();
-    const requestServer = useRequest({ notification: false, auth: true });
     const handleLogOut = async () => {
-        try {
-            await requestServer(GET_LOGOUT_ROUTE, "post");
-            await logout();
-            router.replace("/");
-        } catch (error) {
-            console.log(error);
-        }
+        await logout();
+        router.replace("/");
     };
     return (
         <SidebarFooter>

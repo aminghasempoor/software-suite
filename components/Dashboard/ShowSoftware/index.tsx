@@ -4,10 +4,12 @@ import { LucideIcon } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 interface ServiceCardProps {
     title: string;
     description: string;
+    href: string;
     status: "active" | "pending" | "inactive" | "development";
     icon: LucideIcon;
     onClick?: () => void;
@@ -32,7 +34,7 @@ const statusConfig = {
     },
 };
 
-export function ServiceCard({ title, description, status, icon: Icon, onClick }: ServiceCardProps) {
+export function ServiceCard({ title, description, status, icon: Icon, onClick, href }: ServiceCardProps) {
     const statusInfo = statusConfig[status];
 
     return (
@@ -43,7 +45,7 @@ export function ServiceCard({ title, description, status, icon: Icon, onClick }:
         >
             <Card
                 onClick={onClick}
-                className="group relative overflow-hidden bg-card/50 border-border/50 backdrop-blur-md cursor-pointer hover:shadow-xl hover:shadow-blue-500/20 transition-all duration-300"
+                className="group relative overflow-hidden bg-card/50 border-border/50 backdrop-blur-md hover:shadow-xl hover:shadow-blue-500/20 transition-all duration-300"
             >
                 {/* Gradient overlay on hover */}
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-50 transition-opacity duration-300" />
@@ -53,9 +55,9 @@ export function ServiceCard({ title, description, status, icon: Icon, onClick }:
                     <div className="flex items-start justify-between">
                         <motion.div
                             whileHover={{ scale: 1.1 }}
-                            className="flex items-center justify-center w-14 h-14 bg-gradient-to-br from-orange-500/20 to-orange-600/20 rounded-xl border border-orange-500/20 transition-transform duration-300"
+                            className="flex items-center justify-center w-14 h-14  rounded-xl border border-orange-500/20 transition-transform duration-300"
                         >
-                            <Icon className="w-7 h-7 text-orange-400" />
+                            <Icon className="w-18 h-8" />
                         </motion.div>
 
                         <Badge className={statusInfo.className}>{statusInfo.label}</Badge>
@@ -68,13 +70,13 @@ export function ServiceCard({ title, description, status, icon: Icon, onClick }:
                     </div>
 
                     {/* Hover indicator */}
-                    <motion.div
-                        transition={{ duration: 0.3 }}
-                        className="flex items-center gap-2 text-blue-400 text-sm font-medium"
+                    <Link
+                        href={href}
+                        className="flex w-fit items-center gap-2 text-blue-400 text-sm font-medium cursor-pointer"
                     >
                         <span>مشاهده و ورود</span>
                         <span>→</span>
-                    </motion.div>
+                    </Link>
                 </CardContent>
             </Card>
         </motion.div>

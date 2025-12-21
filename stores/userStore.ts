@@ -173,8 +173,9 @@ const useUserStore = create<UserStoreState>((set, get) => ({
             const { data } = await axios.get(GET_USER_ROUTE, {
                 headers: { Authorization: `Bearer ${token}` },
             });
+
             set({
-                user: data.data,
+                user: data,
                 isAuth: true,
                 initAuthState: true,
                 errorState: false,
