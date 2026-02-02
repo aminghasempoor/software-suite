@@ -1,6 +1,4 @@
 "use client";
-
-import { LucideIcon } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
@@ -11,7 +9,7 @@ interface ServiceCardProps {
     description: string;
     href: string;
     status: "active" | "pending" | "inactive" | "development";
-    icon: LucideIcon;
+    icon: React.ComponentType<{ className?: string }>;
     onClick?: () => void;
 }
 
@@ -48,7 +46,7 @@ export function ServiceCard({ title, description, status, icon: Icon, onClick, h
                 className="group relative overflow-hidden bg-card/50 border-border/50 backdrop-blur-md hover:shadow-xl hover:shadow-blue-500/20 transition-all duration-300"
             >
                 {/* Gradient overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-50 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-linear-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-50 transition-opacity duration-300" />
 
                 <CardContent className="relative p-6 space-y-4">
                     {/* Icon + Status */}

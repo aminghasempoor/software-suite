@@ -22,6 +22,7 @@
   "Sidebar": {
     "sidebar": "sidebar",
     "title": "dashboard",
+    "guid": "Guid",
     "logo": "Software-Suit",
     "user-management": "User Management",
     "customer_review": "Customers Review",
