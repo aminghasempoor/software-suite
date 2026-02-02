@@ -65,7 +65,7 @@ export function DashboardComponent() {
                         <CardContent className="flex items-center justify-between p-6">
                             <div>
                                 <p className="text-muted-foreground">سرویس‌های فعال</p>
-                                <p className="text-foreground text-lg font-semibold mt-1">3 سرویس</p>
+                                <p className="text-foreground text-lg font-semibold mt-1">5 سرویس</p>
                             </div>
                             <div className="w-12 h-12 bg-green-500/15 rounded-xl flex items-center justify-center">
                                 <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
@@ -77,7 +77,7 @@ export function DashboardComponent() {
                         <CardContent className="flex items-center justify-between p-6">
                             <div>
                                 <p className="text-muted-foreground">در حال راه‌اندازی</p>
-                                <p className="text-foreground text-lg font-semibold mt-1">2 سرویس</p>
+                                <p className="text-foreground text-lg font-semibold mt-1">0 سرویس</p>
                             </div>
                             <div className="w-12 h-12 bg-yellow-500/15 rounded-xl flex items-center justify-center">
                                 <div className="w-3 h-3 bg-yellow-500 rounded-full animate-pulse" />
@@ -89,7 +89,7 @@ export function DashboardComponent() {
                         <CardContent className="flex items-center justify-between p-6">
                             <div>
                                 <p className="text-muted-foreground">در حال توسعه</p>
-                                <p className="text-foreground text-lg font-semibold mt-1">2 سرویس</p>
+                                <p className="text-foreground text-lg font-semibold mt-1">0 سرویس</p>
                             </div>
                             <div className="w-12 h-12 bg-blue-500/15 rounded-xl flex items-center justify-center">
                                 <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse" />
