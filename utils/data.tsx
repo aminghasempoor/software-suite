@@ -28,7 +28,7 @@ export function getDashboardSidebarItems(t: (key: string) => string) {
 interface Service {
     title: string;
     description: string;
-    status: "active" | "inactive" | "maintenance";
+    status: "active" | "inactive" | "development" | "pending";
     href: string | undefined;
     icon: React.ComponentType<{ className?: string }>;
 }

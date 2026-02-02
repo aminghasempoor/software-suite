@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 
 interface GuideSection {
@@ -22,7 +22,10 @@ const Guid = () => {
                 setLoading(false);
             });
     }, []);
-    if (loading) return <div className="text-center min-h-screen flex items-center justify-center">در حال بارگذاری راهنما...</div>;
+    if (loading)
+        return (
+            <div className="text-center min-h-screen flex items-center justify-center">در حال بارگذاری راهنما...</div>
+        );
 
     return (
         <div className="min-h-screen bg-background p-6 font-sans text-foreground dir-rtl">
@@ -48,9 +51,7 @@ const Guid = () => {
                                 </h3>
                             </div>
                             <div className="p-6 pt-0">
-                                <p className="text-sm leading-7 text-muted-foreground not-first:mt-6">
-                                    {section.text}
-                                </p>
+                                <p className="text-sm leading-7 text-muted-foreground not-first:mt-6">{section.text}</p>
                             </div>
                         </article>
                     ))}

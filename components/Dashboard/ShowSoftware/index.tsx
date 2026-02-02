@@ -1,6 +1,4 @@
 "use client";
-
-import { LucideIcon } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
@@ -11,7 +9,7 @@ interface ServiceCardProps {
     description: string;
     href: string;
     status: "active" | "pending" | "inactive" | "development";
-    icon: LucideIcon;
+    icon: React.ComponentType<{ className?: string }>;
     onClick?: () => void;
 }
 
